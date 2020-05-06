@@ -11,9 +11,10 @@ const initialState = {
     function mainReducer(state = initialState, action) {
     switch(action.type) {
         case 'AUTHENTIACTION':{
-            console.log('Hello')
+             
             let isAuthanticated = false;
              let {password, email } = action.payload;
+            // фейковые данные 
             if(password==="12345" && email==="user@mail.ru"){
                 isAuthanticated = true;
                 localStorage.setItem('is_authorised','1');
