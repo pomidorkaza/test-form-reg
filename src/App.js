@@ -1,24 +1,33 @@
 import React  from 'react';
-import { BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, NavLink, Redirect, Switch} from 'react-router-dom';
+import {PrivateRoute} from './components/PrivateRoute';
+import {LoginForm} from './components/LoginForm';
+import {AllUsers} from './components/AllUser';
 import styles from './main.module.css';
 import './App.css';
-
-import {Header } from './Header';
-
-import {MainPage} from './pages/MainPage';
-import {AboutPage} from './pages/AboutPage';
-import { RoomsPage } from './pages/RoomsPage';
-import {ContactPage} from './pages/ContactPage';
+ 
 function App(){
 
   return (
   <Router>
-   <Header/>
+    <ul className='nav-container'> 
+   <li>  <NavLink to="/login">страница авторизации</NavLink></li>
+   <li>  <NavLink to="/friends">Все пользователи</NavLink></li> 
+    </ul>
+    <Switch> 
+    <Route path="/" exact>
+      <h3>Главная страница</h3>
+    </Route>
+    <Route  exact path="/login">
+    <LoginForm/>
+    </Route>
+    <Route exact path="/register">
+      <h3>Register</h3>
+    </Route>
+    <PrivateRoute  exact path="/friends" component={()=><AllUsers/>} />
 
-    <Route path="/" exact><MainPage/></Route>
-    <Route path="/about"><AboutPage/></Route>
-    <Route path="/rooms"><RoomsPage/></Route>
-    <Route path="/contacts"><ContactPage/></Route>
+  </Switch>
   </Router>);
 }
 

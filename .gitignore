@@ -1,4 +1,5 @@
 /node_modules
+all-user-api/node_modules
 /.pnp
 .pnp.js
 
